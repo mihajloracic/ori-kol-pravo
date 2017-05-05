@@ -25,8 +25,12 @@ namespace Lavirint
                     {
                         return naObradi;
                     }
-                    naObradi.isKutijaStanje();           
-                   
+                    naObradi.isKutijaStanje();
+                    if (naObradi.predjeniPut.Count > 5)
+                    {
+                        stanjaNaObradi.Remove(naObradi);
+                        continue;
+                    }
                     List<State> mogucaSledecaStanja = naObradi.mogucaSledecaStanja();
                     foreach (State sledeceStanje in mogucaSledecaStanja)
                     {

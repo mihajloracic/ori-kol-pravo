@@ -257,7 +257,7 @@ namespace Lavirint
             //TODO1: Implementirati metodu tako da odredjuje dozvoljeno kretanje u lavirintu
             //TODO2: Prosiriti metodu tako da se ne moze prolaziti kroz sive kutije
             isKutijaStanje();
-            return stanjaZaKralja();
+            return stanjaZaKraljicu();
         }
 
         public override int GetHashCode()
@@ -281,7 +281,7 @@ namespace Lavirint
         }
         public bool isKrajnjeStanje()
         {
-            return Main.krajnjeStanje.markI == markI && Main.krajnjeStanje.markJ == markJ && plaveKutije.Count >= 0;
+            return Main.krajnjeStanje.markI == markI && Main.krajnjeStanje.markJ == markJ && plaveKutije.Count >= 1;
         }
 
         public List<State> path()
