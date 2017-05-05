@@ -8,11 +8,16 @@ namespace Lavirint
     {
         public static int[,] lavirint;
         State parent;
+        List<Kutija> plaveKutije = new List<Kutija>();
         public int markI, markJ; //vrsta i kolona
         public double cost;
         public State sledeceStanje(int markI, int markJ)
         {
             State rez = new State();
+            foreach(Kutija i in plaveKutije)
+            {
+                rez.plaveKutije.Add(i);
+            }
             rez.markI = markI;
             rez.markJ = markJ;
             rez.parent = this;
@@ -245,17 +250,32 @@ namespace Lavirint
         {
             //TODO1: Implementirati metodu tako da odredjuje dozvoljeno kretanje u lavirintu
             //TODO2: Prosiriti metodu tako da se ne moze prolaziti kroz sive kutije
+            isKutijaStanje();
             return stanjaZaKralja();
         }
 
         public override int GetHashCode()
         {
-            return 100*markI + markJ;
+            return 100*markI + markJ + plaveKutije.Count * 1000;
         }
-
+        public bool isKutijaStanje()
+        {
+            if (lavirint[markI,markJ] == 4)
+            {
+                foreach (Kutija i in plaveKutije)
+                {
+                    if (i.X == markI && i.Y == markJ)
+                        return false;
+                }
+                plaveKutije.Add(new Kutija(markI,markJ));
+                return true;
+            }
+            return false;
+            
+        }
         public bool isKrajnjeStanje()
         {
-            return Main.krajnjeStanje.markI == markI && Main.krajnjeStanje.markJ == markJ;
+            return Main.krajnjeStanje.markI == markI && Main.krajnjeStanje.markJ == markJ && plaveKutije.Count >= 2;
         }
 
         public List<State> path()

@@ -19,12 +19,16 @@ namespace Lavirint
 
                 if (!predjeniPut.ContainsKey(naObradi.GetHashCode()))
                 {
+                    predjeniPut.Add(naObradi.GetHashCode(), null);
                     Main.allSearchStates.Add(naObradi);
+                    
                     if (naObradi.isKrajnjeStanje())
                     {
                         return naObradi;
                     }
-                    predjeniPut.Add(naObradi.GetHashCode(), null);
+                    //linija 20 proveri ovaj uslov a ovde puca ...
+                    naObradi.isKutijaStanje();           
+                   
                     List<State> mogucaSledecaStanja = naObradi.mogucaSledecaStanja();
                     foreach (State sledeceStanje in mogucaSledecaStanja)
                     {
