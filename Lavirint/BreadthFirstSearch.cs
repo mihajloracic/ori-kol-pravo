@@ -26,7 +26,8 @@ namespace Lavirint
                         return naObradi;
                     }
                     naObradi.isKutijaStanje();
-                    if (naObradi.predjeniPut.Count > 5)
+                    //dubina koliko mu dozvoljavamo da ide
+                    if (naObradi.predjeniPut.Count > 4)
                     {
                         stanjaNaObradi.Remove(naObradi);
                         continue;
