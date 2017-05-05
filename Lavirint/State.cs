@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,6 +11,7 @@ namespace Lavirint
         State parent;
         List<Kutija> plaveKutije = new List<Kutija>();
         public int markI, markJ; //vrsta i kolona
+        public Hashtable predjeniPut = new Hashtable();
         public double cost;
         public State sledeceStanje(int markI, int markJ)
         {
@@ -17,6 +19,10 @@ namespace Lavirint
             foreach(Kutija i in plaveKutije)
             {
                 rez.plaveKutije.Add(i);
+            }
+            foreach(DictionaryEntry pair in predjeniPut)
+            {
+                rez.predjeniPut.Add(pair.Key,pair.Value);
             }
             rez.markI = markI;
             rez.markJ = markJ;
@@ -275,7 +281,7 @@ namespace Lavirint
         }
         public bool isKrajnjeStanje()
         {
-            return Main.krajnjeStanje.markI == markI && Main.krajnjeStanje.markJ == markJ && plaveKutije.Count >= 2;
+            return Main.krajnjeStanje.markI == markI && Main.krajnjeStanje.markJ == markJ && plaveKutije.Count >= 0;
         }
 
         public List<State> path()
