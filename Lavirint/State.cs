@@ -64,7 +64,7 @@ namespace Lavirint
         }
         public bool isKrajnjeStanje()
         {
-            return Main.krajnjeStanje.markI == markI && Main.krajnjeStanje.markJ == markJ && plaveKutije.Count >= 0;
+            return Main.krajnjeStanje.markI == markI && Main.krajnjeStanje.markJ == markJ && plaveKutije.Count >= 1;
         }
 
         public List<State> path()
