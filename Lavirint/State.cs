@@ -10,7 +10,7 @@ namespace Lavirint
         public static int[,] lavirint;
         public State parent;
         List<Kutija> plaveKutije;
-        public int markI, markJ; //vrsta i kolona
+        public int markI, markJ; //vrsta i 
         public Hashtable predjeniPut = new Hashtable();
         public double cost;
         PositionGenerator positionGenerator;
