@@ -188,6 +188,7 @@ namespace Lavirint
                     break;
                 case 4:
                     Main.brojPlavihKutija--;
+
                     tt = 0;
                     break;
             }

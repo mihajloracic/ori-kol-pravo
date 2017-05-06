@@ -19,10 +19,11 @@ namespace Lavirint
         {
 
         }
-        public Kutija(int x, int y)
+        public Kutija(int x, int y, int ID)
         {
             this.X = x;
             this.Y = y;
+            this.ID = ID;
         }
 
         public int ID { get; set; }

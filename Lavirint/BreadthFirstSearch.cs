@@ -12,31 +12,27 @@ namespace Lavirint
         {
             List<State> stanjaNaObradi = new List<State>();
             stanjaNaObradi.Add(pocetnoStanje);
+            Hashtable visited = new Hashtable();
             while (stanjaNaObradi.Count > 0)
             {
                 State naObradi = stanjaNaObradi[0];
 
-                if (!naObradi.predjeniPut.ContainsKey(naObradi.GetHashCode()))
+                if (!visited.ContainsKey(naObradi.GetHashCode()))
                 {
-                    naObradi.predjeniPut.Add(naObradi.GetHashCode(), naObradi.GetHashCode());
+                    visited.Add(naObradi.GetHashCode(), naObradi.GetHashCode());
+                    naObradi.isKutijaStanje();
                     Main.allSearchStates.Add(naObradi);
                     
                     if (naObradi.isKrajnjeStanje())
                     {
                         return naObradi;
                     }
-                    naObradi.isKutijaStanje();
-                    //dubina koliko mu dozvoljavamo da ide
-                    if (naObradi.predjeniPut.Count > 3)
-                    {
-                        stanjaNaObradi.Remove(naObradi);
-                        continue;
-                    }
+    
+                   
                     List<State> mogucaSledecaStanja = naObradi.mogucaSledecaStanja();
                     foreach (State sledeceStanje in mogucaSledecaStanja)
                     {
-                        if(!naObradi.predjeniPut.ContainsKey(sledeceStanje.GetHashCode()))
-                            stanjaNaObradi.Add(sledeceStanje);
+                         stanjaNaObradi.Add(sledeceStanje);
                     }
                 }
                 stanjaNaObradi.Remove(naObradi);

@@ -40,12 +40,17 @@ namespace Lavirint
         {
             //TODO1: Implementirati metodu tako da odredjuje dozvoljeno kretanje u lavirintu
             //TODO2: Prosiriti metodu tako da se ne moze prolaziti kroz sive kutije
-            return positionGenerator.stanjaZaKraljicu();
+            return positionGenerator.stanjaZaKralja();
         }
 
         public override int GetHashCode()
         {
-            return 100*markI + markJ + plaveKutije.Count * 1000;
+            if(plaveKutije.Count != 0)
+            {
+                return 100 * markI + markJ + (plaveKutije[0].ID+1) * 1000;
+            }
+            return 100 * markI + markJ;
+
         }
         public bool isKutijaStanje()
         {
@@ -56,7 +61,7 @@ namespace Lavirint
                     if (i.X == markI && i.Y == markJ)
                         return false;
                 }
-                plaveKutije.Add(new Kutija(markI,markJ));
+                plaveKutije.Add(new Kutija(markI,markJ,markI+markJ*10));
                 return true;
             }
             return false;
